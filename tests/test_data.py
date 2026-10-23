@@ -2,7 +2,7 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from firefly_detection.data import iter_images, list_images, load_image
+from firefly_detection.data import group_by_size, iter_images, list_images, load_image
 
 
 @pytest.fixture
@@ -35,3 +35,11 @@ def test_load_image_shapes(fake_root):
 
 def test_iter_images_limit(fake_root):
     assert len(list(iter_images(root=fake_root, limit=1))) == 1
+
+
+def test_group_by_size(tmp_path):
+    for name, (w, h) in {"a.png": (8, 4), "b.png": (4, 8), "c.png": (8, 4)}.items():
+        Image.new("RGB", (w, h)).save(tmp_path / name)
+    groups = group_by_size(sorted(tmp_path.iterdir()))
+    assert list(groups) == [(8, 4), (4, 8)]
+    assert [p.name for p in groups[(8, 4)]] == ["a.png", "c.png"]

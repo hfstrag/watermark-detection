@@ -8,10 +8,9 @@ project estimates that shared signal from a dataset of Firefly images and derive
 statistical test for its presence at image and patch level, following:
 
 1. J. Butora and P. Bas, *Detection of the Adobe Pattern*, EUSIPCO 2024.
+   [[HAL]](https://hal.science/hal-04498274v2)
 2. J. Butora and P. Bas, *The Adobe Hidden Feature and its Impact on Sensor Attribution*,
-   IH&MMSec 2024.
-
-See `docs/` for the subject description and the reference papers.
+   IH&MMSec 2024. [[ACM DL]](https://dl.acm.org/doi/10.1145/3658664.3659650)
 
 ## Setup
 
@@ -47,7 +46,7 @@ for path, img in iter_images("firefly", gray=True, limit=10):
 ## Layout
 
 ```
-docs/                    subject and reference papers
+docs/                    subject and reference papers (local only, git-ignored)
 src/firefly_detection/   library code
 tests/                   pytest suite
 notebooks/               exploratory analysis
@@ -61,3 +60,8 @@ results/                 figures and outputs (git-ignored)
 pytest
 ruff check . && ruff format .
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE). The Synthbuster images and the reference papers are
+not covered by this license and remain under their own terms.
