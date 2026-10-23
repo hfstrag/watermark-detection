@@ -1,0 +1,42 @@
+[build-system]
+requires = ["hatchling>=1.24"]
+build-backend = "hatchling.build"
+
+[project]
+name = "firefly-detection"
+version = "0.1.0"
+description = "Detecting the periodic upsampling signal left by the Adobe Firefly image generator."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Henry Fernandes", email = "henryfernandes19@gmail.com" }]
+dependencies = [
+    "numpy>=1.26",
+    "pillow>=10.0",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "jupyterlab>=4.0",
+]
+
+[project.scripts]
+firefly-download = "firefly_detection.download:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/firefly_detection"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "NPY"]
